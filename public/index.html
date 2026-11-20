@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071b2a">
+  <title>Surf Forecast Portugal</title>
+  <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">⌇</span><span>Surf Forecast</span><small>Portugal</small></div>
+      <p id="updated" aria-live="polite">A carregar previsão…</p>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Previsão de mar e vento</p>
+      <h1 id="page-title">Encontra a melhor janela para entrar.</h1>
+      <div class="toolbar">
+        <label for="days">Horizonte de previsão</label>
+        <select id="days" aria-label="Número de dias de previsão">
+          <option value="3">3 dias</option>
+          <option value="5" selected>5 dias</option>
+          <option value="7">7 dias</option>
+          <option value="8">8 dias</option>
+        </select>
+        <button id="refresh" type="button">Atualizar</button>
+      </div>
+    </section>
+
+    <section aria-label="Dias disponíveis">
+      <div id="day-tabs" class="day-tabs" role="tablist" aria-label="Escolher dia"></div>
+    </section>
+
+    <section class="forecast" aria-live="polite" aria-busy="true">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" id="selected-date">—</p>
+          <h2>Melhores spots</h2>
+        </div>
+        <p class="hint">Classificação por swell, período e vento.</p>
+      </div>
+      <div id="cards" class="cards"></div>
+      <p id="empty" class="empty" hidden>Não há dados disponíveis para este dia.</p>
+    </section>
+  </main>
+  <script type="module" src="/dashboard.js"></script>
+</body>
+</html>
