@@ -1,10 +1,10 @@
 # Surf Forecast Portugal
 
-MVP que classifica spots entre a Costa da Caparica e o Algarve, incluindo costa sudoeste e sul. Não utiliza base de dados: os spots vivem em código e as previsões vêm das APIs públicas Open-Meteo Marine e Weather, sem chave.
+An MVP that ranks surf spots between Costa da Caparica and the Algarve, including the southwest and south coasts. It does not use a database: spots are defined in code, and forecasts come from the public Open-Meteo Marine and Weather APIs, with no API key required.
 
-## Arrancar
+## Getting started
 
-Requer Node.js 20 ou superior.
+Requires Node.js 20 or later.
 
 ```bash
 npm install
@@ -12,30 +12,30 @@ Copy-Item .env.example .env
 npm run dev
 ```
 
-Endpoints disponíveis:
+Available endpoints:
 
-O dashboard está disponível em `GET /` (por omissão em `http://localhost:5000/`).
+The dashboard is available at `GET /` (by default at `http://localhost:5000/`).
 
 - `GET /health`
 - `GET /api/spots`
 - `GET /api/recommendations/tomorrow`
-- `GET /api/recommendations?days=5` (entre 1 e 8 dias)
+- `GET /api/recommendations?days=5` (between 1 and 8 days)
 
-O fornecedor pede à Marine API a altura, direção e período de swell e à Weather API o vento a 10 m. Ambas as consultas usam `cell_selection=sea`, para escolher a célula marítima mais próxima de cada spot, em vez de uma célula em terra.
+The provider requests swell height, direction, and period from the Marine API, and wind at 10 m from the Weather API. Both queries use `cell_selection=sea` to select the nearest marine grid cell for each spot rather than a land grid cell.
 
-Para gerar o relatório diário no terminal:
+To generate the daily report in the terminal:
 
 ```bash
 npm run daily-report
 ```
 
-## Notificação diária
+## Daily notification
 
-O job envia o relatório para o tópico configurado em `NTFY_TOPIC`. No Windows, a tarefa `Surf Forecast Daily Report` corre diariamente às 07:00 (hora de Lisboa), desde que o computador esteja ligado, com acesso à internet e com a sessão iniciada. Não é necessário ter o VS Code, o servidor ou o dashboard abertos.
+The job sends the report to the topic configured in `NTFY_TOPIC`. On Windows, the `Surf Forecast Daily Report` task runs daily at 07:00 (Lisbon time), provided the computer is on, connected to the internet, and the user is logged in. VS Code, the server, and the dashboard do not need to be open.
 
-No telemóvel, instala a aplicação ntfy (ou usa `ntfy.sh/app`), subscreve o nome definido em `NTFY_TOPIC` e ativa as notificações. Trata esse nome como segredo: não o partilhes.
+On your phone, install the ntfy app (or use `ntfy.sh/app`), subscribe to the topic name defined in `NTFY_TOPIC`, and enable notifications. Treat that name as a secret: do not share it.
 
-## Próximos passos
+## Next steps
 
-1. Validar e ajustar as regras de cada spot em `src/config/spots.ts`.
-2. Criar um dashboard para comparar tendências e condições entre dias.
+1. Validate and fine-tune the rules for each spot in `src/config/spots.ts`.
+2. Create a dashboard to compare trends and conditions across days.
